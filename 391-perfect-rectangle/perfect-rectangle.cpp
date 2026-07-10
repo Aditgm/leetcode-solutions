@@ -1,3 +1,8 @@
+struct PairHash {
+    size_t operator()(const pair<int, int>& p) const {
+        return hash<int>()(p.first) ^ (hash<int>()(p.second) << 1);
+    }
+};
 class Solution {
 public:
     #define ll long long
@@ -5,7 +10,7 @@ public:
     bool isRectangleCover(vector<vector<int>>& rectangles) {
         int minx=INT_MAX,miny=INT_MAX,maxx=INT_MIN,maxy=INT_MIN;
         ll area=0;
-        set<pair<int,int>> corners;
+        unordered_set<pair<int,int>,PairHash> corners;
         for(auto rect:rectangles){
             minx=min(minx,rect[0]);
             miny=min(miny,rect[1]);
