@@ -1,6 +1,11 @@
+auto init = []() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    return 'c';
+}();
 class Solution {
 public:
-    int maxActiveSectionsAfterTrade(string s) {
+    int maxActiveSectionsAfterTrade(string &s) {
         int tot=0,prvzer=-1,curzer=0,maxd=0;
         for(char c:s){
         if(c=='1'){
