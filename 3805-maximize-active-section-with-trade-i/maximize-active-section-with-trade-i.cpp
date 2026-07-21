@@ -25,7 +25,9 @@ public:
         else curzer++;
         }
         if(curzer>0 and prvzer!=-1){
-            maxd=max(maxd,prvzer+curzer);
+            if(maxd<(prvzer+curzer)){
+                maxd=prvzer+curzer;
+            }
         }
         return tot+maxd;
     }
