@@ -7,7 +7,7 @@ auto init = []() {
 }();
 class Solution {
 public:
-    int maxActiveSectionsAfterTrade(string &s) {
+    int maxActiveSectionsAfterTrade(const string &s) {
         int tot=0,prvzer=-1,curzer=0,maxd=0;
         for(char c:s){
         if(c=='1'){
