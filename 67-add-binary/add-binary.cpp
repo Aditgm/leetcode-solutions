@@ -16,7 +16,7 @@ public:
                 j--;
             }
             sum+=carry;
-            res+=to_string(sum%2);
+            res+=((sum%2)+'0');
             carry=sum/2;
         }
         reverse(res.begin(),res.end());
