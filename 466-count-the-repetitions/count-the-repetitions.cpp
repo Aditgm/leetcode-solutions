@@ -3,8 +3,8 @@ public:
     int getMaxRepetitions(string s1, int n1, string s2, int n2) {
         if(n1==0) return 0;
         int len1=s1.length(),len2=s2.length();
-        vector<int> repeatcnt(n1+1,0);
-        vector<int> nextid(n1+1,0);
+        vector<int> repeatcnt(len2+2,0);
+        vector<int> nextid(len2+2,0);
         vector<int> seen(len2,-1);
         int j=0,cnt=0;
         for(int k=1;k<=n1;k++){
