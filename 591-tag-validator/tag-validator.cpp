@@ -6,12 +6,12 @@ public:
         int n=code.size();
         while(i<n){
             if(i>0 and st.empty()) return 0;
-            if(code.substr(i,9)=="<![CDATA["){
+            if(code.compare(i,9,"<![CDATA[")==0){
                 int j=code.find("]]>",i+9);
                 if(j==string::npos) return 0;
                 i=j+3;
             }
-            else if(code.substr(i,2)=="</"){
+            else if(code.compare(i,2,"</")==0){
                 int j=code.find('>',i+2);
                 if(j==string::npos) return 0;
                 string tag=code.substr(i+2,j-i-2);
@@ -19,7 +19,7 @@ public:
                 st.pop();
                 i=j+1;
             }
-            else if(code.substr(i,1)=="<"){
+            else if(code[i]=='<'){
                 int j=code.find('>',i+1);
                 if(j==string::npos) return 0;
                 string tag=code.substr(i+1,j-i-1);
