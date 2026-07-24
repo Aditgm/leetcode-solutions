@@ -1,34 +1,57 @@
+#include <vector>
+
+using namespace std;
+
+#define ll long long
+#define vi vector<int>
+
 class Solution {
 public:
-    int uniqueXorTriplets(vector<int>& nums) {
-        int n=nums.size();
-        bool seen[2048]={0};
-        vector<int> num;
-        for(int x:nums){
-            if(!seen[x]){
-                seen[x]=1;
-                num.push_back(x);
-            }
-        }
-        bool round[2048]={0};
-        for(int x:num){
-            for(int y:num){
-                round[x^y]=1;
-            }
-        }
-        bool round2[2048]={0};
-        int cnt=0;
-        for(int i=0;i<2048;i++){
-            if(round[i]){
-                for(int x:num){
-                    int val=i^x;
-                    if(!round2[val]){
-                        round2[val]=1;
-                        cnt++;
-                    }
+    void fwht(vector<ll>& a, bool invert) {
+        int n = a.size();
+
+        for (int len = 1; 2 * len <= n; len <<= 1) {
+            for (int i = 0; i < n; i += 2 * len) {
+                for (int j = 0; j < len; j++) {
+                    ll u = a[i + j];
+                    ll v = a[i + len + j];
+
+                    a[i + j] = u + v;
+                    a[i + len + j] = u - v;
                 }
             }
         }
-        return cnt;
+
+        if (invert) {
+            for (int i = 0; i < n; i++) {
+                a[i] /= n;
+            }
+        }
+    }
+
+    int uniqueXorTriplets(vi& nums) {
+        int N = 2048;
+        vector<ll> freq(N, 0);
+
+        for (int x : nums) {
+            freq[x] = 1;
+        }
+
+        fwht(freq, false);
+
+        for (int i = 0; i < N; i++) {
+            freq[i] = freq[i] * freq[i] * freq[i];
+        }
+
+        fwht(freq, true);
+
+        int unique_triplets_count = 0;
+        for (int i = 0; i < N; i++) {
+            if (freq[i] > 0) {
+                unique_triplets_count++;
+            }
+        }
+
+        return unique_triplets_count;
     }
 };
