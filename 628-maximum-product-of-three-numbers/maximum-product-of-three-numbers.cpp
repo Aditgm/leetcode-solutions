@@ -25,15 +25,16 @@ public:
                 }
             }
         }
-        ll nums1=1,nums2=1;
-        ll maxi=*max_element(nums.begin(),nums.end());
+        ll nums1=1,nums2=1,x=0;
         while(!pq.empty()){
-            nums1*=pq.top();pq.pop();
+            nums1*=pq.top();
+            if(++x==3) x=pq.top();
+            pq.pop();
         }
         while(!pq2.empty()){
             nums2*=pq2.top();pq2.pop();
         }
-        nums2*=maxi;
+        nums2*=x;
         return max(nums1,nums2);
     }
 };
