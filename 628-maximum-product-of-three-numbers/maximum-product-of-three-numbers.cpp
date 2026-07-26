@@ -1,6 +1,6 @@
 class Solution {
 public:
-    #define ll long long
+    #define ll int
     int maximumProduct(vector<int>& nums) {
         int n=nums.size();
         priority_queue<int> pq2;
