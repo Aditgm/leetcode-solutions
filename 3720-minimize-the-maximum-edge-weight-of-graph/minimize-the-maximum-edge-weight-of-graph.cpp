@@ -15,18 +15,19 @@ public:
                 }
             }
             vector<bool> vis(n,0);
-            vector<int> stack={0};
             int cnt=0;
+            queue<int> q;
             vis[0]=1;
+            q.push(0);
             cnt++;
-            while(!stack.empty()){
-                int cur=stack.back();
-                stack.pop_back();
-                for(int nex:adj[cur]){
-                    if(!vis[nex]){
-                        vis[nex]=1;
+            while(!q.empty()){
+                auto cur=q.front();
+                q.pop();
+                for(auto it:adj[cur]){
+                    if(!vis[it]){
+                        vis[it]=1;
                         cnt++;
-                        stack.push_back(nex);
+                        q.push(it);
                     }
                 }
             }
