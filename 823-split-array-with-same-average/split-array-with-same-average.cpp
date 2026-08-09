@@ -14,13 +14,11 @@ public:
             }
         }
         if(!ok) return 0;
-        vector<vector<bool>> dp(m+1,vector<bool>(tot+1,0));
+        vector<bitset<300005>> dp(m+1);
         dp[0][0]=1;
         for(auto it:nums)
           for(int i=m;i>=1;i--){
-            for(int j=tot;j>=it;j--){
-                dp[i][j]=dp[i][j]||dp[i-1][j-it];
-            }
+            dp[i]=dp[i]|dp[i-1]<<it;
         }
         for(int i=1;i<=m;i++){
             if((tot*i)%n==0){
