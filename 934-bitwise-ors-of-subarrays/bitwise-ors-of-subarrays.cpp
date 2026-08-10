@@ -16,7 +16,7 @@ public:
             for(auto it:nex){
                 ans.pb(it);
             }
-            cur=move(nex);
+            swap(cur,nex);
         }
         sort(ans.begin(),ans.end());
         ans.erase(unique(ans.begin(),ans.end()),ans.end());
