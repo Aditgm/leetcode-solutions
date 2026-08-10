@@ -1,19 +1,26 @@
 class Solution {
 public:
+    #define vi vector<int>
+    #define pb push_back
     int subarrayBitwiseORs(vector<int>& arr) {
-        unordered_set<int> ans,cur;
+        vi ans,cur;
         int n=arr.size();
         for(int i=0;i<n;i++){
-            unordered_set<int> nex;
-            nex.insert(arr[i]);
+            vi nex;
+            nex.pb(arr[i]);
             for(auto it:cur){
-                nex.insert(arr[i]|it);
+                nex.pb(arr[i]|it);
             }
+            sort(nex.begin(),nex.end());
+            nex.erase(unique(nex.begin(),nex.end()),nex.end());
             for(auto it:nex){
-                ans.insert(it);
+                ans.pb(it);
             }
             cur=nex;
+            cur.erase(unique(cur.begin(),cur.end()),cur.end());
         }
+        sort(ans.begin(),ans.end());
+        ans.erase(unique(ans.begin(),ans.end()),ans.end());
         return ans.size();
     }
 };
