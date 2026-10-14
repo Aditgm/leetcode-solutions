@@ -20,8 +20,11 @@ public:
                 ans.push_back(cur);
             }
         }
+        else{
         rec(root->left,sum,tar,cur,ans);
         rec(root->right,sum,tar,cur,ans);
+    }
+    cur.pop_back();
     }
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
       vector<vector<int>> ans;
